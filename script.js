@@ -153,6 +153,7 @@ if (document.readyState === 'loading') { // DOM still loading
 
 document.addEventListener('DOMContentLoaded', () => {
     const profileImage = document.getElementById('profileImage');
+    const knightImage = document.querySelector('.title-knight-decoration');
     const themes = ['green', 'amber', 'blue'];
     let currentThemeIndex = 0;
 
@@ -171,6 +172,15 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             // If nextThemeName is 'green', no class is added,
             // reverting to the default styles defined in :root
+
+            // Update knight image source
+            if (knightImage) {
+                if (nextThemeName === 'green') {
+                    knightImage.src = 'knight.gif';
+                } else {
+                    knightImage.src = 'knight-' + nextThemeName + '.gif';
+                }
+            }
         });
     }
 });
