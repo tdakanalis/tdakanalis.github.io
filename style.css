@@ -21,6 +21,66 @@
     --tag-bg-color: 0, 128, 0; /* R, G, B values for green */
 }
 
+.theme-amber {
+    --primary-color: #D6A349; /* Softer, more muted amber for key elements */
+    --background-color: #2B2111; /* A warmer, slightly lighter dark brown */
+    --text-color: #E0C59A; /* A gentle, desaturated amber for body text */
+    --text-color-green-accent: #DAB379; /* A subtle accent, harmonious with the main text */
+    --accent-color: #DEB46C; /* A slightly brighter, but still soft, accent for focus */
+    --glow-color: rgba(214, 163, 73, 0.35); /* A much softer, more subtle glow */
+    --secondary-glow-color: rgba(214, 163, 73, 0.2); /* A wider, barely-there secondary glow */
+    --shadow-color: rgba(214, 163, 73, 0.15); /* A very faint shadow for depth */
+    --secondary-shadow-color: rgba(214, 163, 73, 0.1); /* An almost transparent secondary shadow */
+    --border-color: #9A773D; /* A less saturated DarkGoldenrod */
+    --secondary-border-color: #AD8B4A; /* A muted Goldenrod */
+    --tag-bg-color-rgb: 214, 163, 73;
+    --scrollbar-track-color: #40321A;
+    --scrollbar-thumb-color: #9A773D;
+    --section-bg-color: rgba(43, 33, 17, 0.5);
+    --status-bar-bg-color: #40321A;
+    --quote-bg-color: rgba(43, 33, 17, 0.4);
+}
+
+.theme-blue {
+    --primary-color: #00BFFF;
+    --background-color: #00002A;
+    --text-color: #ADD8E6;
+    --text-color-green-accent: #B0E0E6; /* PowderBlue for accents */
+    --accent-color: #4169E1;
+    --glow-color: rgba(0, 191, 255, 0.8);
+    --secondary-glow-color: rgba(65, 105, 225, 0.7);
+    --shadow-color: rgba(0, 191, 255, 0.4);
+    --secondary-shadow-color: rgba(65, 105, 225, 0.3);
+    --border-color: #00008B; /* DarkBlue */
+    --secondary-border-color: #1E90FF; /* DodgerBlue */
+    --tag-bg-color-rgb: 0, 191, 255;
+    --scrollbar-track-color: #000050;
+    --scrollbar-thumb-color: #00008B;
+    --section-bg-color: rgba(0, 0, 42, 0.4);
+    --status-bar-bg-color: #000050;
+    --quote-bg-color: rgba(0, 0, 42, 0.3);
+}
+
+.theme-indigo {
+    --primary-color: #7E6CEF; /* A slightly brightened, more vivid version of the base */
+    --background-color: #1C1B22; /* A deep, cool-toned charcoal background */
+    --text-color: #D1D0D9; /* A soft, light gray for optimal readability */
+    --text-color-green-accent: #B3A9E0; /* A muted lavender for secondary text or accents */
+    --accent-color: #9887FA; /* The brightest accent, for focus and interactive elements */
+    --glow-color: rgba(126, 108, 239, 0.35); /* A subtle, modern glow */
+    --secondary-glow-color: rgba(126, 108, 239, 0.2); /* A faint, wide secondary glow */
+    --shadow-color: rgba(126, 108, 239, 0.15); /* A very faint shadow for depth */
+    --secondary-shadow-color: rgba(126, 108, 239, 0.1); /* An almost transparent secondary shadow */
+    --border-color: #584B8A; /* A dark, desaturated indigo for borders */
+    --secondary-border-color: #715CD7; /* The original inspiration color for secondary borders */
+    --tag-bg-color-rgb: 126, 108, 239;
+    --scrollbar-track-color: #2F2C3D;
+    --scrollbar-thumb-color: #584B8A;
+    --section-bg-color: rgba(28, 27, 34, 0.6);
+    --status-bar-bg-color: #2F2C3D;
+    --quote-bg-color: rgba(28, 27, 34, 0.5);
+}
+
 .title-image-container {
     width: 100%; /* Ensures it behaves predictably if parent becomes flex */
     margin-top: 5px; /* Adds a small space above the image */

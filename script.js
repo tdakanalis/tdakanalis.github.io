@@ -60,20 +60,19 @@ function fetchAndDisplayRepos() {
     try {
         const repos = [
             {
+                url: "https://github.com/cytechmobile/buddymeet",
+                name: "BuddyMeet",
+                description: "BuddyMeet is a Wordpress plugin that uses Jitsi Meet to add video and audio conferencing rooms to BuddyPress.",
+                languages: ["PHP", "JavaScript", "CSS"],
+                stargazers_count: 12
+            },
+            {
                 url: "https://github.com/cytechmobile/radicle-migration-tool",
                 name: "Radicle Migration Tool",
                 description: "A command line tool for migrating your project to Radicle.",
                 languages: ["JAVA"],
                 stargazers_count: 10
             },
-            {
-            url: "https://github.com/cytechmobile/buddymeet",
-            name: "BuddyMeet",
-            description: "BuddyMeet is a Wordpress plugin that uses Jitsi Meet to add video and audio conferencing rooms to BuddyPress.",
-            languages: ["PHP", "JavaScript", "CSS"],
-            stargazers_count: 8
-        },
-
             {
                 url: "https://github.com/tdakanalis/tor2e-theme",
                 name: "TOR2E - Theme",
@@ -151,3 +150,37 @@ if (document.readyState === 'loading') { // DOM still loading
 } else { // DOM already loaded
     fetchAndDisplayRepos();
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const profileImage = document.getElementById('profileImage');
+    const knightImage = document.querySelector('.title-knight-decoration');
+    const themes = ['green', 'amber', 'blue', 'indigo'];
+    let currentThemeIndex = 0;
+
+    if (profileImage) {
+        profileImage.addEventListener('click', () => {
+            // Update currentThemeIndex to the next theme, cycling through the array
+            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+            const nextThemeName = themes[currentThemeIndex];
+
+            // Remove existing theme classes
+            document.body.classList.remove('theme-amber', 'theme-blue', 'theme-indigo');
+
+            // Add the new theme class (if not green, which is default)
+            if (nextThemeName !== 'green') {
+                document.body.classList.add('theme-' + nextThemeName);
+            }
+            // If nextThemeName is 'green', no class is added,
+            // reverting to the default styles defined in :root
+
+            // Update knight image source
+            if (knightImage) {
+                if (nextThemeName === 'green') {
+                    knightImage.src = 'knight.gif';
+                } else {
+                    knightImage.src = 'knight-' + nextThemeName + '.gif';
+                }
+            }
+        });
+    }
+});
