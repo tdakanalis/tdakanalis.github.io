@@ -60,20 +60,19 @@ function fetchAndDisplayRepos() {
     try {
         const repos = [
             {
+                url: "https://github.com/cytechmobile/buddymeet",
+                name: "BuddyMeet",
+                description: "BuddyMeet is a Wordpress plugin that uses Jitsi Meet to add video and audio conferencing rooms to BuddyPress.",
+                languages: ["PHP", "JavaScript", "CSS"],
+                stargazers_count: 12
+            },
+            {
                 url: "https://github.com/cytechmobile/radicle-migration-tool",
                 name: "Radicle Migration Tool",
                 description: "A command line tool for migrating your project to Radicle.",
                 languages: ["JAVA"],
                 stargazers_count: 10
             },
-            {
-            url: "https://github.com/cytechmobile/buddymeet",
-            name: "BuddyMeet",
-            description: "BuddyMeet is a Wordpress plugin that uses Jitsi Meet to add video and audio conferencing rooms to BuddyPress.",
-            languages: ["PHP", "JavaScript", "CSS"],
-            stargazers_count: 8
-        },
-
             {
                 url: "https://github.com/tdakanalis/tor2e-theme",
                 name: "TOR2E - Theme",
