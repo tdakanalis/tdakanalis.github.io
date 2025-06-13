@@ -1,85 +1,559 @@
-/* General Styles */
+:root {
+    --primary-color: #33FF33; /* Green */
+    --background-color: #001A00; /* Dark Green */
+    --text-color: #E0E0E0; /* Light Gray for general text */
+    --text-color-green-accent: #B0FFB0; /* Light Green for accents */
+    --accent-color: #55FF55; /* Medium Green */
+    --glow-color: rgba(51, 255, 51, 0.8); /* Green glow */
+    --secondary-glow-color: rgba(85, 255, 85, 0.7); /* Lighter green glow for secondary elements */
+    --shadow-color: rgba(51, 255, 51, 0.4); /* Green shadow */
+    --secondary-shadow-color: rgba(85, 255, 85, 0.3); /* Lighter green shadow */
+    --border-color: #008000; /* Darker Green */
+    --secondary-border-color: #00B300; /* Medium Dark Green */
+    --tag-bg-color-rgb: 0, 255, 0; /* RGB for Green, for use in rgba() - keeping original bright green for specific uses like tags */
+    --scrollbar-track-color: #003300; /* Dark green for scrollbar track */
+    --scrollbar-thumb-color: #009900; /* Medium green for scrollbar thumb */
+    --section-bg-color: rgba(0, 40, 0, 0.4); /* Dark green for section backgrounds */
+    --status-bar-bg-color: #003300; /* Dark green for status bar */
+    --quote-bg-color: rgba(0, 40, 0, 0.3); /* Dark green for quote backgrounds */
+
+    /* Original variable, updated for green theme */
+    --tag-bg-color: 0, 128, 0; /* R, G, B values for green */
+}
+
+.title-image-container {
+    width: 100%; /* Ensures it behaves predictably if parent becomes flex */
+    margin-top: 5px; /* Adds a small space above the image */
+    /* text-align: center; removed as parent .header-text handles this */
+    line-height: 0; /* Reduces extra space if image is treated as inline-like */
+    padding-bottom: 0; /* Explicitly ensure no bottom padding */
+    margin-bottom: -10px; /* Workaround for suspected internal GIF padding */
+}
+
+.title-knight-decoration {
+    display: block;
+    margin: 23px auto 0;
+    max-height: 40px;
+}
+
+/* User's new CSS will be here */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-    line-height: 1.6;
-}
-
-.container {
-    width: 80%;
-    margin: auto;
+    background: var(--background-color);
+    font-family: 'Courier New', monospace;
+    color: var(--text-color); /* Main Ambient Text Color */
+    min-height: 100vh;
     overflow: hidden;
-    padding: 0 20px;
-    max-width: 1200px; /* Maximum width for readability */
-}
-
-header, section, footer {
-    background-color: #fff; /* Different background for content sections */
-    margin-bottom: 20px;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-/* Header Styling */
-header {
-    background-color: #333;
-    color: #fff;
-    padding-top: 30px;
-    min-height: 70px;
-    border-bottom: #0779e4 3px solid;
-}
-
-header h1 {
-    text-align: center;
-    margin: 0;
-    font-size: 2.5em;
-}
-
-header nav {
-    margin-top: 20px;
-}
-
-header nav ul {
     padding: 0;
-    list-style: none;
-    text-align: center;
 }
 
-header nav ul li {
-    display: inline;
-    margin-right: 20px;
+.crt-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    box-shadow: inset 0 0 50px var(--shadow-color),
+    0 0 40px var(--shadow-color);
 }
 
-header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.2em;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease; /* For hover effect */
-}
-
-header nav ul li a:hover {
-    background-color: #0779e4; /* Hover effect for navigation links */
-}
-
-/* Section Styling */
-section h2 {
-    color: #333;
-    border-bottom: 2px solid #0779e4;
-    padding-bottom: 10px;
-    margin-top: 0; /* Remove default margin */
-}
-
-/* Footer Styling */
-footer {
-    text-align: center;
+.crt-screen {
+    position: relative;
+    flex-grow: 1;
+    #background: var(--background-color);
+    border: 2px solid var(--border-color);
+    overflow: hidden;
     padding: 20px;
-    background-color: #333;
-    color: #fff;
-    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.crt-screen::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+            to bottom,
+            rgba(var(--tag-bg-color-rgb), 0.1),
+            rgba(var(--tag-bg-color-rgb), 0.1) 1px,
+            transparent 1px,
+            transparent 3px
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+.crt-screen::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(var(--tag-bg-color-rgb), 0.05);
+    animation: flicker 0.15s infinite;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.terminal-header {
+    text-align: center;
+    padding: 6px 0 10px 0; /* Adjusted padding */
+    margin-bottom: 15px; /* Reduced margin-bottom */
+    border-bottom: 2px solid var(--primary-color);
+    font-family: 'Press Start 2P', cursive;
+    font-size: clamp(14px, 2.5vw, 22px);
+    letter-spacing: 3px;
+    color: var(--text-color);
+    text-shadow: 0 0 8px var(--glow-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    position: relative; /* Added for positioning context */
+}
+
+.profile-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0; /* Prevents profile container from shrinking */
+}
+
+.profile-photo {
+    width: clamp(60px, 8vw, 80px);
+    height: clamp(60px, 8vw, 80px);
+    border-radius: 5px;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 0 15px var(--shadow-color);
+    overflow: hidden;
+    animation: glitch 0.15s infinite;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.profile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: sepia(0.6) contrast(1.2) brightness(0.9) saturate(0.8);
+    transition: all 0.5s ease;
+}
+
+.profile-photo:hover img {
+    filter: sepia(0.8) contrast(1.4) brightness(0.85) saturate(1) hue-rotate(10deg);
+}
+
+.profile-photo::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, transparent 60%, rgba(0, 0, 0, 0.7) 100%),
+    linear-gradient(45deg, rgba(var(--tag-bg-color-rgb), 0.2) 0%, transparent 50%);
+    border-radius: 5px;
+    pointer-events: none;
+}
+
+.profile-photo::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    box-shadow: inset 0 0 20px rgba(var(--tag-bg-color-rgb), 0.5),
+    0 0 30px var(--shadow-color);
+    pointer-events: none;
+}
+
+.header-text {
+    /* flex-grow: 1; already present */
+    min-width: 200px; /* Ensures it has a minimum width */
+    flex: 1; /* Allows it to take available space, shorthand for grow:1, shrink:1, basis:0% */
+    /* text-align: center; is inherited from .terminal-header and is effective */
+}
+
+.content-container {
+    position: relative;
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+    z-index: 3;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+    grid-auto-rows: minmax(min-content, auto); /* Added this */
+}
+
+.content-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.content-container::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-color);
+}
+
+.content-container::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb-color);
+    border-radius: 4px;
+}
+
+.section {
+    margin-bottom: 15px;
+    padding: 15px;
+    background: var(--section-bg-color);
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.section-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: var(--text-color-green-accent);
+    display: flex;
+    align-items: center;
+    line-height: 1.5;
+}
+
+.section-title-hover {
+    text-shadow: 0 0 12px var(--glow-color);
+    color: var(--accent-color);
+}
+
+.section-title::before {
+    content: ">";
+    margin-right: 10px;
+    color: var(--accent-color);
+}
+
+.section-content {
+    line-height: 1.6;
+    font-size: clamp(14px, 1.5vw, 16px);
+    flex-grow: 1;
+}
+
+.tag {
+    display: inline-block;
+    background: rgba(var(--tag-bg-color-rgb), 0.05);
+    border: 1px solid var(--primary-color);
+    padding: 3px 8px;
+    margin: 4px 6px 4px 0;
+    border-radius: 3px;
+    font-size: clamp(12px, 1.2vw, 14px);
+    color: var(--text-color); /* Main Ambient Text Color */
+}
+
+.tag:hover {
+    color: rgba(var(--primary-color), 0.05); /* Added hover color for tags */
+}
+
+.tag-hover {
+    background-color: rgba(var(--tag-bg-color-rgb), 0.4);
+    border-color: var(--accent-color);
+    transform: scale(1.05);
+    box-shadow: 0 0 10px var(--shadow-color);
+    /* Ensure original color from .tag is preserved or overridden if needed */
+    color: #FFFFFF; /* This was an existing hover behavior for text color */
+}
+
+.pixel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-gap: 8px;
+}
+
+.pixel-card {
+    border: 1px solid var(--secondary-border-color);
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    transition: all 0.3s ease;
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Changed from center to allow footer to push to bottom */
+}
+
+.pixel-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px var(--shadow-color);
+    border-color: var(--accent-color);
+}
+
+.pixel-icon {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 8px;
+    filter: drop-shadow(0 0 5px var(--glow-color));
+}
+
+.pixel-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: clamp(10px, 1.2vw, 12px);
+    margin-bottom: 5px;
+    color: var(--text-color-green-accent);
+}
+
+.repo-body {
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.status-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 15px;
+    background: var(--status-bar-bg-color);
+    border-top: 1px solid var(--border-color);
+    font-size: clamp(10px, 1.5vw, 14px);
+    margin-top: 15px;
+    color: var(--text-color); /* Main Ambient Text Color */
+    opacity: 0.75; /* Opacity for status bar */
+    flex-shrink: 0;
+}
+
+.crt-bezel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8),
+    inset 0 0 10px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    z-index: 4;
+}
+
+.glow-text {
+    color: var(--text-color-green-accent); /* New base color for glow text */
+    text-shadow: 0 0 6px var(--glow-color);
+}
+
+.quote {
+    text-align: right;
+    font-style: italic;
+    padding: 15px;
+    color: var(--text-color); /* Main Ambient Text Color */
+    margin: 15px 0;
+    background: var(--quote-bg-color);
+    position: relative;
+    overflow: hidden;
+    font-size: clamp(14px, 1.5vw, 16px);
+}
+
+.quote::before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: 5px;
+    font-size: 80px;
+    color: rgba(var(--tag-bg-color-rgb), 0.2);
+    font-family: Georgia, serif;
+    line-height: 1;
+}
+
+.quote-author {
+    display: block;
+    text-align: right;
+    margin-top: 10px;
+    color: var(--text-color-green-accent);
+    font-weight: bold;
+}
+
+.link {
+    color: inherit;
+    text-decoration: none;
+}
+
+@keyframes flicker {
+    0% {
+        opacity: 0.1;
+    }
+    10% {
+        opacity: 0.25;
+    }
+    20% {
+        opacity: 0.15;
+    }
+    30% {
+        opacity: 0.3;
+    }
+    40% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 0.35;
+    }
+    60% {
+        opacity: 0.22;
+    }
+    70% {
+        opacity: 0.28;
+    }
+    80% {
+        opacity: 0.18;
+    }
+    90% {
+        opacity: 0.32;
+    }
+    100% {
+        opacity: 0.2;
+    }
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.cursor {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background: var(--text-color);
+    margin-left: 5px;
+    animation: blink 1s infinite;
+    vertical-align: middle;
+}
+
+.floating {
+    animation: float 8s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes glitch {
+    0%, 93%, 100% {
+        opacity: 1;
+        transform: none;
+        filter: grayscale(0.3) brightness(1.1) contrast(1.1);
+    }
+
+    94% {
+        opacity: 0.8;
+        transform: translateX(-1px);
+        filter: grayscale(0.6) brightness(0.9);
+    }
+
+    95% {
+        opacity: 0.5;
+        transform: translateY(1px);
+        filter: grayscale(0.8) brightness(0.7);
+    }
+
+    96% {
+        opacity: 0.9;
+        transform: none;
+        filter: grayscale(0.4) brightness(1);
+    }
+}
+
+@media (max-width: 900px) {
+    .content-container {
+        grid-template-columns: 1fr;
+    }
+
+    .terminal-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-container {
+        justify-content: center;
+        width: 100%;
+    }
+
+    /* .header-knight-image rules removed as the class is no longer used here */
+}
+
+.pixel-icon path {
+    fill: var(--text-color);
+}
+
+.margin-vertical-15 {
+    margin: 15px 0;
+}
+
+.repo-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: auto;
+}
+
+.repo-stats {
+  display: inline-flex; /* Use flexbox for alignment */
+  align-items: center; /* Vertically align items in the center */
+  gap: 4px; /* Add a small gap between the star and the counter */
+}
+
+.repo-stars {
+    font-weight: bold;
+    padding-top: 3px;
+}
+
+.repo-stats svg {
+  vertical-align: middle; /* Align SVG with the middle of the text */
+}
+
+.align-right {
+    text-align: right;
+}
+
+@media (max-width: 500px) {
+    .crt-screen {
+        padding: 10px;
+    }
+
+    .status-bar {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    /* .header-knight-image rules removed as the class is no longer used here */
+}
+
+@media (max-width: 767px) {
+    .title-image-container {
+        display: none; /* Hide the image on smaller screens */
+    }
 }
