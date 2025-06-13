@@ -154,7 +154,7 @@ if (document.readyState === 'loading') { // DOM still loading
 document.addEventListener('DOMContentLoaded', () => {
     const profileImage = document.getElementById('profileImage');
     const knightImage = document.querySelector('.title-knight-decoration');
-    const themes = ['green', 'amber', 'blue'];
+    const themes = ['green', 'amber', 'blue', 'indigo'];
     let currentThemeIndex = 0;
 
     if (profileImage) {
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const nextThemeName = themes[currentThemeIndex];
 
             // Remove existing theme classes
-            document.body.classList.remove('theme-amber', 'theme-blue');
+            document.body.classList.remove('theme-amber', 'theme-blue', 'theme-indigo');
 
             // Add the new theme class (if not green, which is default)
             if (nextThemeName !== 'green') {
