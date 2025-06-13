@@ -150,3 +150,27 @@ if (document.readyState === 'loading') { // DOM still loading
 } else { // DOM already loaded
     fetchAndDisplayRepos();
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const profileImage = document.getElementById('profileImage');
+    const themes = ['green', 'amber', 'blue'];
+    let currentThemeIndex = 0;
+
+    if (profileImage) {
+        profileImage.addEventListener('click', () => {
+            // Update currentThemeIndex to the next theme, cycling through the array
+            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+            const nextThemeName = themes[currentThemeIndex];
+
+            // Remove existing theme classes
+            document.body.classList.remove('theme-amber', 'theme-blue');
+
+            // Add the new theme class (if not green, which is default)
+            if (nextThemeName !== 'green') {
+                document.body.classList.add('theme-' + nextThemeName);
+            }
+            // If nextThemeName is 'green', no class is added,
+            // reverting to the default styles defined in :root
+        });
+    }
+});
